@@ -1,0 +1,20 @@
+{
+    "workOrderMapping": [
+        {
+            "userId": "M1032747",
+            "workOrderId": 1
+        },
+        {
+            "userId": "M1032732",
+            "workOrderId": 2
+        },
+        {
+            "userId": "M1032750",
+            "workOrderId": 3
+        },
+        {
+            "userId": "M1032747",
+            "workOrderId": 7
+        }
+    ]
+}

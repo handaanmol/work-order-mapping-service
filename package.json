@@ -1,0 +1,23 @@
+{
+  "name": "work-order-mapping",
+  "version": "1.0.0",
+  "description": "Rest Services for Work-Order-Mapping",
+  "main": "node server.js DEV",
+  "scripts": {
+    "start": "node server.js DEV",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.1",
+    "morgan": "^1.8.0",
+    "winston": "^2.3.1",
+    "underscore": "^1.8.3"
+  },
+  "author": "anmolhanda@mindtree.com",
+  "license": "ISC"
+}

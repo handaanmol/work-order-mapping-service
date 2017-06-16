@@ -1,0 +1,131 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "work-order-services",
+        "description": "Microservice for mapping work order to users",
+        "version": "1.0.0",
+        "termsOfService": "https://coe.mindtree.com/coe_advwebtech/"
+    },
+    "host": "localhost:9002",
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/work-order-services/apis/wo/{userId}": {
+            "get": {
+                "summary": "get work orders by userId",
+                "description": "get work orders by userId\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                        "name": "userId",
+                        "in": "path",
+                        "type": "Integer"
+                    }],
+                "tags": [
+                    "work-orders"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get work orders by userId operation in response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/work-order-services/apis/wo/associate": {
+            "post": {
+                "summary": "mapping work order with userId",
+                "description": "mapping work order with userId\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "mapping",
+                        "in": "body",
+                        "description": "content",
+                        "schema": {
+                            "$ref": "#/definitions/workOrderMapping"
+                        }
+                    }
+                ],
+                "tags": [
+                    "work-orders"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "mapping work order with user operation response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "fields": {
+                    "type": "string"
+                }
+            }
+        },
+        "response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "status": {
+                    "type": "object"
+                }
+            }
+        },
+        "workOrderMapping": {
+            "type": "object",
+            "properties": {
+                "userId": {
+                    "type": "string"
+                },
+                "workOrderId": {
+                    "type": "number"
+                }
+            }
+        }
+    }
+}
