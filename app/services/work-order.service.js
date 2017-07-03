@@ -47,7 +47,7 @@ function getWorkOrdersByUserId(userId) {
             var workorderMaps = _.where(workOrderMapping, {userId: userId });
             var workOrders=_.pluck(workorderMaps,'workOrderId')
             logger.info("work orders fetched for user with userId : "+userId+"fetched successfully {{IN SERVICE}}")
-            resolve(workOrders);
+            resolve(workOrders[workOrders.length-1]);
         }
         else {
             logger.error("Some error in fetching the workOrders for user {{IN SERVICE}}");
