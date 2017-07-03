@@ -40,23 +40,23 @@ https://nodejs.org
 1) Check out the code from :
 
 ```sh
-https://github.com/handaanmol/order-service
+https://github.com/handaanmol/work-order-mapping-service
 ```
 
 2) Copy the clone URL ( `clone with SSH` ) : copy to clip board.
 
-3) Create a new folder and name it. Say, "microservices-code". If you have cloned inventory-services in some folder, clone this also in same folder.
+3) Create a new folder and name it. Say, "microservices-code". If you have cloned work-order-mapping-service in some folder, clone this also in same folder.
 
 4) Enter into the "microservices-code" folder, open `Git Bash` and do a
 
 ```sh
-git clone git@github.com:handaanmol/order-service.git
+git clone git@github.com:handaanmol/work-order-mapping-service.git
 ```
 
 5) You will get the services folder. Go to the working directory
 
 ```sh
-cd order-services
+cd work-order-mapping-service
 ```
 #### Run the App
 1) Install node dependencies
@@ -70,5 +70,5 @@ node index
 #### You can check the swagger url at
 
 LOCAL
-http://localhost:9002/order-services/apis/swagger
+http://localhost:9002/work-order-mapping-service/apis/docs
 
