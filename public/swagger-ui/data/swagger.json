@@ -15,7 +15,7 @@
         "application/json"
     ],
     "paths": {
-        "/v1/work-order-services/apis/workorders/user/{userId}": {
+        "/work-order-services/apis/workorders/user/{userId}": {
             "get": {
                 "summary": "Get Work Orders By User Id",
                 "description": "Get Work Orders By User Id\n",
@@ -50,7 +50,7 @@
                 }
             }
         },
-        "/v1/work-order-services/apis/workorder/user/{userId}": {
+        "/work-order-services/apis/workorder/user/{userId}": {
             "get": {
                 "summary": "Get most recent Work Order By User Id",
                 "description": "Get most recent Work Order By User Id\n",
@@ -85,7 +85,7 @@
                 }
             }
         },
-        "/v1/work-order-services/apis/workorder/associate": {
+        "/work-order-services/apis/workorder/associate": {
             "post": {
                 "summary": "Associate Work Order to User by workOrderId and userId",
                 "description": "Associate Work Order to User by workOrderId and userId\n",
