@@ -16,14 +16,14 @@ var app = express();
 app.use(morganLogger('dev'));
 
 // SWAGGER IMPLEMENTATION
-app.use('/work-order-services/apis/docs', express.static('./public/swagger-ui'));
+app.use('/v1/work-order-services/apis/docs', express.static('./public/swagger-ui'));
 var router = express.Router();
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', "extended": false }));
 
 corsFilter(router);
 
-app.use('/work-order-services/apis', router);
+app.use('/v1/work-order-services/apis', router);
 
 //error handler if something breaks
 app.use(function (err, req, res, next) {

@@ -15,10 +15,10 @@
         "application/json"
     ],
     "paths": {
-        "/work-order-services/apis/wo/{userId}": {
+        "/v1/work-order-services/apis/workorders/user/{userId}": {
             "get": {
-                "summary": "get work orders by userId",
-                "description": "get work orders by userId\n",
+                "summary": "Get Work Orders By User Id",
+                "description": "Get Work Orders By User Id\n",
                 "consumes": [
                     "application/json"
                 ],
@@ -28,14 +28,15 @@
                 "parameters": [{
                         "name": "userId",
                         "in": "path",
-                        "type": "Integer"
+                        "type": "Integer",
+                        "required": true
                     }],
                 "tags": [
-                    "work-orders"
+                    "WorkOrdersByUserId"
                 ],
                 "responses": {
                     "200": {
-                        "description": "get work orders by userId operation in response",
+                        "description": "Get Work Orders By User Id operation in response",
                         "schema": {
                             "$ref": "#/definitions/response"
                         }
@@ -49,10 +50,45 @@
                 }
             }
         },
-        "/work-order-services/apis/wo/associate": {
+        "/v1/work-order-services/apis/workorder/user/{userId}": {
+            "get": {
+                "summary": "Get most recent Work Order By User Id",
+                "description": "Get most recent Work Order By User Id\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                        "name": "userId",
+                        "in": "path",
+                        "type": "Integer",
+                        "required": true
+                    }],
+                "tags": [
+                    "WorkOrderByUserId"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get most recent Work Order By User Id operation in response",
+                        "schema": {
+                            "$ref": "#/definitions/response"
+                        }
+                    },
+                    "500": {
+                        "description": "unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/work-order-services/apis/workorder/associate": {
             "post": {
-                "summary": "mapping work order with userId",
-                "description": "mapping work order with userId\n",
+                "summary": "Associate Work Order to User by workOrderId and userId",
+                "description": "Associate Work Order to User by workOrderId and userId\n",
                 "consumes": [
                     "application/json"
                 ],
@@ -70,11 +106,11 @@
                     }
                 ],
                 "tags": [
-                    "work-orders"
+                    "AssociateWorkOrderToUser"
                 ],
                 "responses": {
                     "200": {
-                        "description": "mapping work order with user operation response",
+                        "description": "Associate Work Order to User by workOrderId and userId operation response",
                         "schema": {
                             "$ref": "#/definitions/response"
                         }
