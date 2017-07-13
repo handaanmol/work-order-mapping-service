@@ -23,10 +23,10 @@ function associateWorkOrderToUser(req, res) {
     var workOrderData = req.body;
     workOrderService.associateWorkOrderToUser(workOrderData).then(function (result) {
         response.data = result;
-        response.status.code = "200";
+        response.status.code = "201";
         response.status.message = "Order Placed Successfully";
         logger.info("Order Placed Successfully");
-        res.status(200).json(response);
+        res.status(201).json(response);
     }).catch(function (error) {
         logger.error("error while Placing Order {{In Controller}}", error);
         response.status.code = "500";
