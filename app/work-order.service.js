@@ -2,11 +2,11 @@
 /**
  * This service file contains the service layer methods for manipulating the workorder objects.
  */
-var logger = require("../../logger.js");
+var logger = require("../common/logger.js");
 var Promise = require('bluebird');
 var _ = require('underscore');
 var fs = require('fs');
-var workOrderFile = require('../../work-order-mapping.json')
+var workOrderFile = require('../data/work-order-mapping.json')
 
 //Creating the object which will finally be exported
 var workOrderService = {
@@ -29,7 +29,7 @@ function associateWorkOrderToUser(workOrderData) {
                 createdDate: currentDateTimeStamp
             }
             workOrderFile.workOrderMapping.push(obj);
-            fs.writeFile(__dirname + "/../../work-order-mapping.json", JSON.stringify(workOrderFile), function (err) {
+            fs.writeFile(__dirname + "/../data/work-order-mapping.json", JSON.stringify(workOrderFile), function (err) {
                 if (err) {
                     logger.error("Error while associating Work Order to User in the work-order-mapping file");
                     reject(err);

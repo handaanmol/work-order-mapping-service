@@ -16,7 +16,7 @@ var logger = new winston.Logger({
     transports: [
         new winston.transports.File({
             level: 'debug',
-            filename: 'logs/order-services.log',
+            filename: 'logs/work-order-services.log',
             handleExceptions: true,
             json: true,
             maxsize: 5242880, //5MB
@@ -30,7 +30,7 @@ var logger = new winston.Logger({
             json: false,
             colorize: true,
             timestamp:true,
-            label:'order-services',
+            label:'work-order-services',
             humanReadableUnhandledException :true
         })
     ],

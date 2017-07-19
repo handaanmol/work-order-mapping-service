@@ -3,12 +3,12 @@
  * This file contains the controller methods related to manipulation of item documents.
  */
 
-//Importing the order service.
-var workOrderService = require("../services/work-order.service.js");
-var logger = require("../../logger.js");
-
-//Importing the response object
-var Response = require("../response.js");
+/**
+ * Importing required
+ */
+var workOrderService = require("./work-order.service.js");
+var logger = require("../common/logger.js");
+var Response = require("../common/response.js");
 var Promise = require("bluebird");
 
 //Creating the object to be exported.

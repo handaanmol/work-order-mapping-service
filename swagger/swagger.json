@@ -3,17 +3,8 @@
     "info": {
         "title": "work-order-services",
         "description": "Microservice for mapping work order to users",
-        "version": "1.0.0",
-        "termsOfService": "https://coe.mindtree.com/coe_advwebtech/"
+        "version": "1.0.0"
     },
-    "host": "localhost:9002",
-    "schemes": [
-        "http"
-    ],
-    "basePath": "/",
-    "produces": [
-        "application/json"
-    ],
     "paths": {
         "/v1/work-order-services/apis/workorders/user/{userId}": {
             "get": {
