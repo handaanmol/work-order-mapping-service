@@ -1,9 +1,10 @@
-data/
 node_modules/
 dist/
 npm-debug.log
 .project
 logs
+data
+work-order-mapping.json
 coverage
 jsconfig.json
 .vscode

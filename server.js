@@ -1,3 +1,14 @@
+/**
+ * Create the data directory and work-order-mapping.json if it does not exist
+ */
+var logger = require("./common/logger.js");
+var fs = require('fs');
+if (!fs.existsSync("data")) {
+    fs.mkdirSync("data");
+}
+if (!fs.existsSync("data/work-order-mapping.json")) {
+  fs.writeFile("data/work-order-mapping.json", '{"workOrderMapping":[{"userId":"M1032747","workOrderId":1,"createddate":"20170712150230"}]}');
+}
 
 /**
  * Import Files
@@ -5,7 +16,7 @@
 var workOrderRoute = require("./app/work-order.route.js");
 var swagger = require("./swagger/swagger.json");
 var corsFilter = require("./common/cors.filter");
-var logger = require("./common/logger.js");
+//var logger = require("./common/logger.js");
 
 /**
  * Set up npm modules
@@ -14,7 +25,6 @@ var swaggerUi = require('swaggerize-ui');
 var bodyParser = require("body-parser");
 var morganLogger = require("morgan");
 var express = require("express");
-var fs = require('fs');
 
 /**
  * Initialize the Express server and its router

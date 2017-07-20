@@ -6,7 +6,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/v1/user-workorders": {
+        "/api/v1/user-workorders/user-workorders": {
             "get": {
                 "summary": "Get Work Orders for a given user",
                 "description": "Get Work Orders for a given user\n",
@@ -15,6 +15,21 @@
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+
+                        "name": "userid",
+                        "in": "query",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    }
                 ],
                 "tags": [
                     "User Work Order Mapping"
