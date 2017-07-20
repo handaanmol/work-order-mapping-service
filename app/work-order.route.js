@@ -13,9 +13,8 @@ var Promise = require("bluebird");
 
 //Creating the object to be exported.
 function init(router) {
-    router.route('/workorder/associate').post(associateWorkOrderToUser);
-    router.route('/workorder/user/:userId').get(getWorkOrderByUserId);
-    router.route('/workorders/user/:userId').get(getWorkOrdersByUserId);
+    router.route('/user-workorders').post(associateWorkOrderToUser);
+    router.route('/user-workorders').get(getWorkOrders);
 };
 
 function associateWorkOrderToUser(req, res) {
@@ -35,10 +34,11 @@ function associateWorkOrderToUser(req, res) {
     });
 }
 
-function getWorkOrderByUserId(req, res) {
+function getWorkOrders(req, res) {
     var response = new Response();
-    var userId = req.params.userId;
-    workOrderService.getWorkOrderByUserId(userId).then(function (result) {
+    var userId = req.query.userid;
+    var limit = req.query.limit;
+    workOrderService.getWorkOrders(userId, limit).then(function (result) {
         response.data = result;
         response.status.code = "200";
         response.status.message = "Work Order for User with id :" + userId + " fetched successfully.";
@@ -47,28 +47,10 @@ function getWorkOrderByUserId(req, res) {
     }).catch(function (error) {
         logger.error("error while fetching Work Order with User id :" + userId + " {{In Controller}}", error);
         response.status.code = "500";
-        response.status.message = "Work Orders for User with id : " + userId + " were not fetched successfully";
+        response.status.message = "Error in fetching Work Orders: " + error;
         res.status(500).json(response);
     });
 }
 
-function getWorkOrdersByUserId(req, res) {
-    var response = new Response();
-    var userId = req.params.userId;
-    workOrderService.getWorkOrdersByUserId(userId).then(function (result) {
-        response.data = result;
-        response.status.code = "200";
-        response.status.message = "Work Orders for User with id :" + userId + " fetched successfully.";
-        logger.info("Work Orders for User with id :" + userId + " fetched successfully.");
-        res.status(200).json(response);
-    }).catch(function (error) {
-        logger.error("error while fetching Order with id :" + userId + " {{In Controller}}", error);
-        response.status.code = "500";
-        response.status.message = "work orders for user with id : " + userId + " were not fetched successfully";
-        res.status(500).json(response);
-    });
-}
-
-
-//Finally exporting the employee controller methods as an object.
+//Finally exporting the methods
 module.exports.init = init;

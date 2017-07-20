@@ -11,8 +11,7 @@ var workOrderFile = require('../data/work-order-mapping.json')
 //Creating the object which will finally be exported
 var workOrderService = {
     associateWorkOrderToUser: associateWorkOrderToUser,
-    getWorkOrdersByUserId: getWorkOrdersByUserId,
-    getWorkOrderByUserId: getWorkOrderByUserId
+    getWorkOrders: getWorkOrders
 };
 
 /**
@@ -45,39 +44,34 @@ function associateWorkOrderToUser(workOrderData) {
     })
 };
 
-function getWorkOrderByUserId(userId) {
+function getWorkOrders(userId, limit) {
     return new Promise(function (resolve, reject) {
+        
+        if (!userId){
+            logger.error("userid query parameter is mandatory");
+            reject("userid query parameter is mandatory");
+        }
+        else
+            logger.error("OOOPS");
+        
         var workOrderMapping = workOrderFile.workOrderMapping;
         if (workOrderMapping != undefined && workOrderMapping != null) {
             var workOrders = _.where(workOrderMapping, {userId: userId });
             if (workOrders.length > 0) {
-                var workOrder = _.sortBy(workOrders, function(data) { return data.createddate; });
+                var sortedWorkOrders = _.sortBy(workOrders, function(data) { return data.createddate; }).reverse();
                 logger.info("Work Order fetched for user with userId : " + userId + " fetched successfully {{IN SERVICE}}")
-                workOrder = workOrder.reverse()
-                resolve(_.first(workOrder));
+                if (!limit)
+                    resolve(sortedWorkOrders);
+                else
+                    resolve(_.first(sortedWorkOrders, limit));
             } else {
-                logger.error("No assocaition with UserId found {{IN SERVICE}}");
-                reject("No assocaition with UserId found User");
+                logger.error("No work orders with UserId found {{IN SERVICE}}");
+                reject("No work orders for user '" + userId + "' found");
             }
         }
         else {
-            logger.error("Some error in fetching the Work Order for User {{IN SERVICE}}");
-            reject("Some error in fetching the Work Order for User");
-        }
-    })
-}
-
-function getWorkOrdersByUserId(userId) {
-    return new Promise(function (resolve, reject) {
-        var workOrderMapping = workOrderFile.workOrderMapping;
-        if (workOrderMapping != undefined && workOrderMapping != null) {
-            var workorderMaps = _.where(workOrderMapping, {userId: userId });
-            logger.info("Work Orders fetched for user with userId : " + userId + " fetched successfully {{IN SERVICE}}")
-            resolve(workorderMaps);
-        }
-        else {
-            logger.error("Some error in fetching the Work Orders for User {{IN SERVICE}}");
-            reject("Some error in fetching the Work Orders for User");
+            logger.error("Some error in fetching the Work Order for user {{IN SERVICE}}");
+            reject("Some error in fetching the Work Order for user");
         }
     })
 }
@@ -98,5 +92,5 @@ function getCurrentDateTimeStamp() {
     return year + month + day + hour + min + sec;
 }
 
-//Exporting allthe methods in an object
+//Exporting all the methods in an object
 module.exports = workOrderService;

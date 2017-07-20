@@ -14,12 +14,17 @@ var swaggerUi = require('swaggerize-ui');
 var bodyParser = require("body-parser");
 var morganLogger = require("morgan");
 var express = require("express");
-var router = express.Router();
 var fs = require('fs');
-var app = express();
 
 /**
- * HTTP request logger middleware for node.js
+ * Initialize the Express server and its router
+ */
+var app = express();
+var router = express.Router();
+
+
+/**
+ * Initialize logging middleware
  */
 app.use(morganLogger('dev'));
 // Create the log directory if it does not exist
@@ -28,7 +33,7 @@ if (!fs.existsSync("logs")) {
 }
 
 /**
- * Seeting Limits
+ * Setting Limits
  */
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', "extended": false }));
@@ -39,10 +44,9 @@ app.use(bodyParser.urlencoded({ limit: '10mb', "extended": false }));
 corsFilter(router);
 
 /**
- * Endpoint for Our Custom Services
- * Defining routes
+ * Configure routes for the services
  */
-app.use('/v1/work-order-services/apis', router);
+app.use('/api/v1/user-workorders', router);
 workOrderRoute.init(router);
 
 /**
@@ -57,7 +61,7 @@ app.get('/swagger', function(req, res) {
 /**
  * Endpoint for Swagger UI
  */
-app.use('/v1/work-order-services/apis/docs', swaggerUi({
+app.use('/api/v1/user-workorders/docs', swaggerUi({
   docs: '/swagger'
 }));
 

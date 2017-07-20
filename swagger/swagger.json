@@ -1,33 +1,27 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "work-order-services",
-        "description": "Microservice for mapping work order to users",
+        "title": "User Work Order Services",
+        "description": "Microservice for mapping work order to user",
         "version": "1.0.0"
     },
     "paths": {
-        "/v1/work-order-services/apis/workorders/user/{userId}": {
+        "/api/v1/user-workorders": {
             "get": {
-                "summary": "Get Work Orders By User Id",
-                "description": "Get Work Orders By User Id\n",
+                "summary": "Get Work Orders for a given user",
+                "description": "Get Work Orders for a given user\n",
                 "consumes": [
                     "application/json"
                 ],
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [{
-                        "name": "userId",
-                        "in": "path",
-                        "type": "Integer",
-                        "required": true
-                    }],
                 "tags": [
-                    "WorkOrdersByUserId"
+                    "User Work Order Mapping"
                 ],
                 "responses": {
                     "200": {
-                        "description": "Get Work Orders By User Id operation in response",
+                        "description": "List of Work Orders",
                         "schema": {
                             "$ref": "#/definitions/response"
                         }
@@ -39,47 +33,10 @@
                         }
                     }
                 }
-            }
-        },
-        "/v1/work-order-services/apis/workorder/user/{userId}": {
-            "get": {
-                "summary": "Get most recent Work Order By User Id",
-                "description": "Get most recent Work Order By User Id\n",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [{
-                        "name": "userId",
-                        "in": "path",
-                        "type": "Integer",
-                        "required": true
-                    }],
-                "tags": [
-                    "WorkOrderByUserId"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Get most recent Work Order By User Id operation in response",
-                        "schema": {
-                            "$ref": "#/definitions/response"
-                        }
-                    },
-                    "500": {
-                        "description": "unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/work-order-services/apis/workorder/associate": {
+            },
             "post": {
-                "summary": "Associate Work Order to User by workOrderId and userId",
-                "description": "Associate Work Order to User by workOrderId and userId\n",
+                "summary": "Associate Work Order to a user",
+                "description": "Associate Work Order to a user \n",
                 "consumes": [
                     "application/json"
                 ],
@@ -97,11 +54,11 @@
                     }
                 ],
                 "tags": [
-                    "AssociateWorkOrderToUser"
+                    "User Work Order Mapping"
                 ],
                 "responses": {
                     "200": {
-                        "description": "Associate Work Order to User by workOrderId and userId operation response",
+                        "description": "Associated Work Order mapping entity",
                         "schema": {
                             "$ref": "#/definitions/response"
                         }
