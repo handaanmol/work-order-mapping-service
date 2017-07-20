@@ -7,16 +7,8 @@ if (!fs.existsSync("data")) {
     fs.mkdirSync("data");
 }
 if (!fs.existsSync("data/work-order-mapping.json")) {
-  fs.writeFile("data/work-order-mapping.json", '{"workOrderMapping":[{"userId":"M1032747","workOrderId":1,"createddate":"20170712150230"}]}');
+   fs.writeFileSync("data/work-order-mapping.json", '{"workOrderMapping":[{"userId":"M1032747","workOrderId":1,"createddate":"20170712150230"}]}', 'utf8');
 }
-
-/**
- * Import Files
- */
-var workOrderRoute = require("./app/work-order.route.js");
-var swagger = require("./swagger/swagger.json");
-var corsFilter = require("./common/cors.filter");
-//var logger = require("./common/logger.js");
 
 /**
  * Set up npm modules
@@ -25,6 +17,14 @@ var swaggerUi = require('swaggerize-ui');
 var bodyParser = require("body-parser");
 var morganLogger = require("morgan");
 var express = require("express");
+
+/**
+ * Import Files
+ */
+var workOrderRoute = require("./app/work-order.route.js");
+var swagger = require("./swagger/swagger.json");
+var corsFilter = require("./common/cors.filter");
+//var logger = require("./common/logger.js");
 
 /**
  * Initialize the Express server and its router
@@ -56,7 +56,7 @@ corsFilter(router);
 /**
  * Configure routes for the services
  */
-app.use('/api/v1/user-workorders', router);
+app.use('/api/v1', router);
 workOrderRoute.init(router);
 
 /**
